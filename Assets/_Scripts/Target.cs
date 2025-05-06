@@ -1,12 +1,16 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Target : MonoBehaviour
 {
     private Rigidbody _rigidbody;
     private float minForce = 12f, maxForce = 16f;
     private float Torque = 10f;
-    private float xRange = 4f, ySpawnPos = -6f;
-    
+    private float xRange = 4f, ySpawnPos = -2f;
+    private GameManager gameManager; // Referencia al GameManager
+    public int PointValue; // Valor de puntos al hacer clic en el objeto
+    public ParticleSystem explosionParticle; // Partícula de explosión al destruir el objeto
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -14,6 +18,7 @@ public class Target : MonoBehaviour
         _rigidbody.AddForce(ApplyUpwardForce(), ForceMode.Impulse);
         _rigidbody.AddTorque(ApplyRandomTorque(), ApplyRandomTorque(), ApplyRandomTorque(), ForceMode.Impulse);
         transform.position = SetInitialPosition();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>(); // Busca el GameManager en la escena
     }
 
     // Update is called once per frame
@@ -49,5 +54,31 @@ public class Target : MonoBehaviour
     {
         float randomX = Random.Range(-xRange, xRange);
         return new Vector3(randomX, ySpawnPos);
+    }
+
+    private void OnMouseDown() 
+    {
+        if(gameManager.currentGameState == GameManager.GameState.Playing) // Verifica si el juego está en estado "Playing"
+        {
+        Destroy(gameObject); // Destruye el objeto al hacer clic en él
+        Instantiate(explosionParticle, transform.position, explosionParticle.transform.rotation); // Instancia la partícula de explosión en la posición del objeto
+        gameManager.UpdateScore(PointValue); // Aumenta la puntuación en 1 al hacer clic
+        if (gameObject.CompareTag("Bad")){
+            gameManager.GameOver(); // Llama al método GameOver del GameManager si el objeto es un objetivo malo
+        }
+        }
+
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("KillZone")) // Verifica si el objeto colisiona con el GameOver
+        {
+            Destroy(gameObject); // Destruye el objeto al entrar en contacto con el GameOver
+            if (gameObject.CompareTag("Good")) // Verifica si el objeto es un objetivo
+            {
+                gameManager.UpdateScore(-PointValue); // Resta puntos al jugador
+            }
+        }
     }
 }

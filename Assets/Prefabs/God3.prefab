@@ -9,14 +9,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1617126184358185467}
+  - component: {fileID: 6264639720642235490}
   - component: {fileID: 7823816389374117567}
   - component: {fileID: 6563342394519625578}
   - component: {fileID: 5640645127790713938}
   - component: {fileID: 5515232297126964665}
-  - component: {fileID: 6264639720642235490}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: God3
-  m_TagString: Untagged
+  m_TagString: Good
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31,11 +31,26 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6264639720642235490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4148170126727309633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcb5984d6908346479dcdda1e12b3666, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PointValue: 5
+  explosionParticle: {fileID: 3199346384015752365, guid: 307229a5540374aae98859caad2128a3,
+    type: 3}
 --- !u!33 &7823816389374117567
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -137,15 +152,3 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.51974, y: 0.17482021, z: 0.5152532}
   m_Center: {x: 0, y: -0.000000022351742, z: -0.000000044703484}
---- !u!114 &6264639720642235490
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4148170126727309633}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dcb5984d6908346479dcdda1e12b3666, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
